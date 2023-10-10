@@ -1,0 +1,300 @@
+ /* ======================GOOGLE FONT======================== */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+  /* ====================================Variable CSS=============================== */
+  :root {
+    --hue-color: 240;
+    /* color mode  */
+    --first-color: hsl(var(--hue-color), 53%, 49%);
+    --title-color: hsl(var(--hue-color), 53%, 15%);
+    --text-color: hsl(var(--hue-color), 12%, 35%);
+    --text-color-light: hsl(var(--hue-color), 12%, 65%);
+    --white-color:#FFF;
+    --body-color: hsl(var(--hue-color), 24%, 94%);
+
+    /* font & Typography */
+    --body-font: 'Poppins', sans-serif;
+    --biggest-font-size: 3rem;
+    --tiny-font-size: .625rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    /* FONT weight  */
+    --font-medium: 500;
+   
+    /* MARGIN BOTTOM  */
+    --mb-0-25: .25rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2-5: 2.5rem;
+    
+    /* Z-index  */
+    --z-tooltip: 10;
+    --z-normal: 1;
+    
+}
+@media screen and (min-width: 968px) {
+    :root {
+        --biggest-font-size: 3.5rem;
+        --tiny-font-size: .75rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+   }
+}
+ /* ***************************Variable Dark theme**********************/
+body.dark-theme{
+  --title-color: hsl(var(--hue-color), 12%, 95%);
+  --text-color: hsl(var(--hue-color), 12%, 75%);
+  --body-color: hsl(var(--hue-color), 10%, 16%);
+}
+
+  /* *************************** BUTTON DARK/LIGHT THEME ***********************  */
+.clock__theme{
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  display: flex;
+  padding: .25rem;
+  border-radius: 50%;
+  box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 0%, 100%,1),
+              inset  1px 1px 1px hsla(var(--hue-color), 30%, 86%, 1);
+  color: var(--first-color);
+  cursor: pointer;
+
+}
+
+  /************************* Box Shadow Dark Theme ****************/  
+.dark-theme .clock__circle {
+  box-shadow: 6px 6px 16px hsla(var(--hue-color), 8%, 12%, 1),
+              -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1),       
+              inset -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1),
+              inset 6px 6px 12px hsla(var(--hue-color), 8%, 12%, 1);     
+}
+.dark-theme .clock__date{
+  color: rgb(207, 217, 226);
+}
+.dark-theme .bxs-sun{
+  color: rgb(233, 20, 66);;
+}
+.dark-theme .div2{
+  padding: 5px;
+  width: 200px;
+  justify-self: center;
+  border-radius: 10px;
+  background: #25252d;
+  box-shadow: inset 7px 7px 14px #111115,
+              inset -7px -7px 14px #393945;
+}
+  
+  /************************* BASE ****************/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+}
+  
+  /* **********REUSABLE CSS CLASSES***********  */
+  .container {
+    max-width: 968px;
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+}
+
+.grid {
+    display: grid;
+}
+  /************************* CLOCK ****************/
+.clock__container{
+    height: 100vh;
+    grid-template-rows: 1fr max-content;
+}
+.clock__circle{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  box-shadow: -0px -6px 16px var(--white-color),
+            6px 6px 16px hsl(var(--hue-color), 30%, 86%, 1),
+            inset 6px 6px 16px hsl(var(--hue-color), 30%, 86%, 1),
+            inset -6px -6px 16px var(--white-color) ;
+border-radius: 50%;
+justify-self: center;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.clock__content{
+  align-self: center;
+  row-gap: 3.5rem;
+}
+.clock__twelwe,
+.clock__three,
+.clock__six,
+.clock__nine{
+  position: absolute;
+  width: 1rem;
+  height: 1px;
+  background-color: rgb(233, 20, 66);
+}
+.clock__twelwe,
+.clock__six{
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.clock__twelwe{
+  top: 1.25rem;
+  left: 50%;
+}
+.clock__three{
+  top: 50%;
+  right: .75rem;
+}
+.clock__six{
+  bottom: 1.25rem;
+  left: 50%;
+}
+.clock__nine{
+  left: .75rem;
+  top: 50%;
+}
+.clock__center{
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color:var(--first-color);
+  border-radius: 50%;
+  border: 2px solid var(--body-color);
+  z-index: var(--z-tooltip);
+}
+.clock__hours,
+.clock__minutes,
+.clock__seconds{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+.clock__hours{
+  width: 105px;
+  height: 105px;
+
+}
+.clock__hours::before{
+  content: '';
+  position: absolute;
+  background-color:var(--text-color);
+  width: 0.25rem;
+  height: 3rem;
+  border-radius: .75rem;
+  z-index: var(--z-normal);
+}
+.clock__minutes{
+  width: 136px;
+  height: 136px;
+
+}
+.clock__minutes::before{
+  content: '';
+  position: absolute;
+  background-color:rgb(233, 20, 66);
+  width: 0.21rem;
+  height: 4rem;
+  border-radius: .75rem;
+  z-index: var(--z-normal);
+}
+.clock__seconds{
+  width: 130px;
+  height: 130px;
+
+}
+.clock__seconds::before{
+  content: '';
+  position: absolute;
+  background-color:rgb(102, 20, 233);
+  width: 0.125rem;
+  height: 5rem;
+  border-radius: .75rem;
+  z-index: var(--z-normal);
+}
+.clock__logo{
+  width: max-content;
+  justify-self: center;
+  margin-bottom: var(--mb-2-5);
+  font-size: larger;
+  font-weight: var(--font-medium);
+  letter-spacing: 8px;
+  color: #0e3742;
+  text-transform: uppercase;
+  -webkit-box-reflect: below 1px linear-gradient(transparent,#0008) ;
+  line-height: 0.79em;
+  outline: none;
+  animation: animate 5s linear infinite ;
+}
+@keyframes animate{
+  0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+  {
+    color: #0e3742;
+    text-shadow: none;
+  }
+  18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+  {
+    color: #FFF;
+    text-shadow: 0 0 10px #03bcf4,
+           0 0 20px #03bcf4,
+           0 0 40px #03bcf4,
+           0 0 80px #03bcf4,
+           0 0 160px #03bcf4;
+  }
+}
+
+.div2{
+  padding: 5px;
+  width: 200px;
+  justify-self: center;
+  border-radius: 10px;
+  background: #ececf3;
+  box-shadow: inset 7px 7px 10px #89898d,
+              inset -7px -7px 10px #ffffff;
+}
+.clock__text{
+  display: flex;
+  justify-content: center;
+}
+.clock__text-hour,
+.clock__text-minutes
+{
+font-size: var(--biggest-font-size);
+font-weight: var(--font-medium);
+color: rgb(233, 20, 66);
+}
+
+.clock__text-AMPM{
+  font-size: var(--tiny-font-size);
+  color: var(--text-color);
+  font-weight:var(--font-medium);
+  margin-left: var(--mb-0-25);
+}
+.clock__date{
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  color: rgb(117, 36, 240);
+}
+  /********************MEDIA QUERIES****************/
+/************************* For large device ****************/
+@media screen and (min-width:968px){
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .clock__logo{
+    margin-bottom: 3rem;
+  }
+ 
+}
